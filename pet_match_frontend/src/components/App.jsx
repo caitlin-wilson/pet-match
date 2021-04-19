@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import { GlobalStyles } from '../global';
+import { GlobalStyles } from '../GlobalStyles';
 import { ThemeProvider } from 'styled-components';
-import { theme } from '../theme';
+import { theme } from '../ColorTheme';
 
 import LandingPage from '../pages/LandingPage/LandingPage';
 

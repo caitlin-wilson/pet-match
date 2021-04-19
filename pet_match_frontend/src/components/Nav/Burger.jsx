@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Burg } from './Nav.styled';
-import RightNav from './RightNav';
+import Dropdown from './Dropdown';
 
 const Burger = () => {
   const [open, setOpen] = useState(false)
@@ -12,7 +12,7 @@ const Burger = () => {
         <div />
         <div />
       </Burg>
-      <RightNav open={open} />
+      <Dropdown open={open} />
     </div>
   )
 }

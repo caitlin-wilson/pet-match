@@ -13,12 +13,23 @@ const Nav = styled.nav`
     font-size: 35px
   }
 `
+
+const Welcome = styled.div`
+  align-self: center; 
+  font-size: 20px;
+  padding-right: 150px;
+
+  @media (max-width: 760px) {
+    display: none;
+  }
+`
+
 const UL = styled.div`
   list-style: none;
   align-items: center;
   flex-flow: column nowrap;
   background-color: ${({ theme }) => theme.white};
-  border: 1px solid ${({ theme }) => theme.pink};
+  border: 1px solid ${({ theme }) => theme.secondary};
   border-radius: 10px;
   height: auto;
   width: 200px;
@@ -68,12 +79,11 @@ const Burg = styled.div`
       transition: 0.3s linear;
     }
   }
-
-
 `
 
 export {
   Nav,
   UL,
-  Burg
+  Burg,
+  Welcome,
 }
