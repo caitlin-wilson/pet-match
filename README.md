@@ -10,9 +10,11 @@ PetMatch is a fun and interactive way to 'meet' adoptable pets in your area.
   - landing page
   - sign up
   - log in
+  - user profile
+
   - start game
   - game page
     - meet the pets (from the game)
+  
   - pet details
-  - user profile
 
