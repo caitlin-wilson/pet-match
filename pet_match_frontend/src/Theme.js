@@ -7,3 +7,4 @@ export const theme = {
   secondaryhover: '#D390B0',
   text: '#000000',
 }
+

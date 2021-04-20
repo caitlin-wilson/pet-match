@@ -3,13 +3,13 @@ import { Nav, Welcome } from './Nav.styled';
 import Burger from './Burger';
 
 
-const NavBar = () => {
+const NavBar = (props) => {
   return (
     <Nav>
       <div className='logo'>
         PetMatch
       </div>
-      {/* <Welcome>Welcome back, user!</Welcome> */}
+      <Welcome>Welcome back, {props.user.first_name}!</Welcome>
       <Burger />
     </Nav>
   )

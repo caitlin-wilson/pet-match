@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Burg } from './Nav.styled';
 import Dropdown from './Dropdown';
 

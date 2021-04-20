@@ -12,14 +12,19 @@ const Nav = styled.nav`
     padding-left: 10px;
     font-size: 35px
   }
+
+  Link {
+    color: black;
+  }
+
 `
 
 const Welcome = styled.div`
   align-self: center; 
   font-size: 20px;
-  padding-right: 150px;
+  padding-left: 50vw;
 
-  @media (max-width: 760px) {
+  @media (max-width: 900px) {
     display: none;
   }
 `

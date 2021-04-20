@@ -11,17 +11,16 @@ export const GlobalStyles = createGlobalStyle`
   body {
     background: ${({ theme }) => theme.bg};
     color: ${({ theme }) => theme.text};
-    font-family: 'Cormorant', serif, 'Rubik', sans-serif;
+    font-family: 'Cormorant', serif;
     text-rendering: optimizeLegibility;
   }
 
-  button {
-    width: 190px;
+  button, .submit {
     background-color: ${({ theme }) => theme.primary};
     border: none;
     border-radius: 10px;
-    color: white;
-    padding: 15px 32px;
+    color: ${({ theme }) => theme.white};
+    padding: 15px 50px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -29,7 +28,13 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Rubik', sans-serif;
   }
 
-  button:hover {
+  .button-inverse {
+    background-color: ${({ theme }) => theme.white};
+    border: 1px solid ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.primary};
+  }
+
+  button:hover, .submit:hover {
     background-color: ${({ theme }) => theme.primaryhover};
   }
 `
