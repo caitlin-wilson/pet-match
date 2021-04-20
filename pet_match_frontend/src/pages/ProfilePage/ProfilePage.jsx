@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { TopBar, Banner, ProfPhoto, Main } from './ProfilePage.styled';
 
 const ProfilePage = (props) => {
-
   return (
     <div>
       <TopBar>

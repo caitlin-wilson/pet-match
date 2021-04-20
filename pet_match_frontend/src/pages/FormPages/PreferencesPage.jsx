@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { Page, FormButtons } from './FormPages.styled';
 import { Form } from 'react-bootstrap';
-import UserAPI from '../../UserAPI/UserAPI';
+import UserAPI from '../../APIs/UserAPI';
 
 
 const PreferencesPage = (props) => {

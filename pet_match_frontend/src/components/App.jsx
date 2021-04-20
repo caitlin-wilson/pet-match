@@ -5,7 +5,8 @@ import { GlobalStyles } from '../GlobalStyles';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../Theme';
 
-import UserAPI from '../UserAPI/UserAPI';
+import UserAPI from '../APIs/UserAPI';
+import PetFinderAPI from '../APIs/PetFinderAPI';
 
 import LandingPage from '../pages/LandingPages/LandingPage';
 import SignUpPage from '../pages/FormPages/SignUpPage';
@@ -25,6 +26,22 @@ const App = () => {
       setUser(data)
     })()
   }, [])
+
+  // keep track of Pet Finder token.  Expires every hour
+  const [tokenExpiration, SetTokenExpiration] = useState(0)
+  const [token, setToken] = useState(null)
+  useEffect(() => {
+    const now = Date.now()
+    // if the token has expired set a new token
+    const fetchToken = async () => {
+      if (now > (tokenExpiration + 3600000)) {
+        const newToken = await PetFinderAPI.fetchToken()
+        setToken(newToken)
+        SetTokenExpiration(Date.now())
+      }
+    }
+    fetchToken()
+  }, [tokenExpiration])
 
   return (
     <ThemeProvider theme={theme}>
