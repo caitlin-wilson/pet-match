@@ -1,34 +1,32 @@
 import styled from 'styled-components';
 
-const Deck = styled.div`
-  display: flex;
-  flex-flow: row;
-  justify-content: space-evenly;
+const GameDeck = styled.div`
+  width: 95vw;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
+ 
 `
 
 const GameCard = styled.div`
-  border: 1px solid blue;
-  max-width: 160px;
-  max-height: 160px;
-  width: 50ch;
-  height: 50ch;
-  cursor: pointer;
-  will-change: transform, opacity;
+  height: 200px;
+  width: 180px;
+  margin: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: ${({ theme }) => theme.secondary};
 
-  .front, .back {
-    background-size: cover;
+  img {
+    height: 100%;
+    object-fit: contain;
   }
-
-  .back {
-    background-color: red;
-  }
-  .front {
-      background-image: url(https://images.unsplash.com/photo-1540206395-68808572332f?ixlib=rb-1.2.1&w=1181&q=80&auto=format&fit=crop);
-    }
 `
 
 export {
-  Deck,
+  GameDeck,
   GameCard,
 }
