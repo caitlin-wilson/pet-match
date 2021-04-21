@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Card from './Card';
-import { GameDeck } from './CardsAndDeck.styled';
+import { GameHeader, GameDeck } from './CardsAndDeck.styled';
 
 
 const CardDeck = ({ animals }) => {
@@ -9,6 +9,7 @@ const CardDeck = ({ animals }) => {
     if (animals.length < 0) { }
     let newDeck = []
     animals.map((animal) => {
+      animal.flipped = false
       newDeck.push(animal)
       newDeck.push(animal)
     })
@@ -20,25 +21,48 @@ const CardDeck = ({ animals }) => {
       newDeck[j] = x;
     }
     setDeck(newDeck)
-  }, [])
+  }, [animals])
+
+  const [matchCount, setMatchCount] = useState(0)
+  const [cardsFlipped, setCardsFlipped] = useState(0)
+
+  const CardClick = (e) => {
+    if (matchCount <= 6) {
+      if (cardsFlipped <= 2) {
+        const matchOne = e.target.children[0]
+        const matchTwo = e.target.children[0]
+        setCardsFlipped(2)
+        if (matchOne === matchTwo) {
+          setMatchCount(matchCount + 1)
+        } else {
+          setCardsFlipped(0)
+          alert('reset the cards to continue')
+        }
+      }
+    }
+  }
 
   const renderCards = () => {
     if (deck) {
       return (
         deck.map((item, index) => {
           return (
-            <Card animal={item} matchID={item.id} />
+            <div onClick={CardClick} >
+              <Card animal={item} />
+            </div >
           )
         })
       )
     }
   }
-  console.log(deck)
 
   return (
-    <GameDeck>
-      {renderCards()}
-    </GameDeck>
+    <div>
+      <GameHeader>Match Header Placeholder</GameHeader>
+      <GameDeck>
+        {renderCards()}
+      </GameDeck>
+    </div>
   )
 }
 

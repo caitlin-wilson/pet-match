@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { GameCard } from './CardsAndDeck.styled';
 
-const Card = ({ animal, matchID }) => {
+const Card = ({ animal }) => {
   const [flipped, setFlipped] = useState(false)
 
   const handleClick = () => {
@@ -11,8 +11,8 @@ const Card = ({ animal, matchID }) => {
   return (
     <GameCard onClick={handleClick}>
       {flipped ?
-        <img src={`${animal.photos[0].medium}`} /> :
-        <img src={``} />
+        <img alt={`${animal.id}`} src={`${animal.photos[0].medium}`} /> :
+        <img alt={''} src={''} />
       }
 
     </GameCard>

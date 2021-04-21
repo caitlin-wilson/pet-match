@@ -1,7 +1,15 @@
 import styled from 'styled-components';
 
+const GameHeader = styled.div`
+  height: 80px;
+  margin-top: 30px;
+  font-size: 36px;
+  display: flex;
+  justify-content: center;
+`
+
 const GameDeck = styled.div`
-  width: 95vw;
+  width: 100vw;
   display: inline-flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -13,7 +21,8 @@ const GameDeck = styled.div`
 const GameCard = styled.div`
   height: 200px;
   width: 180px;
-  margin: 10px;
+  margin: 20px;
+  border-radius: 10px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -23,10 +32,13 @@ const GameCard = styled.div`
   img {
     height: 100%;
     object-fit: contain;
+    border-radius: 10px;
+    max-width: 180px;
   }
 `
 
 export {
+  GameHeader,
   GameDeck,
   GameCard,
 }
