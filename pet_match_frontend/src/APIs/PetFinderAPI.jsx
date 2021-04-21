@@ -24,18 +24,14 @@ const fetchToken = async () => {
   }
 }
 
-const fetchAnimals = async (token) => {
-  const request = await fetch("https://api.petfinder.com/v2/animals", {
+const fetchAnimals = async (searchString, token) => {
+  const request = await fetch(`https://api.petfinder.com/v2/animals?${searchString}`, {
     headers: {
       Authorization: `Bearer ${token}`
     }
   })
   const data = await request.json()
   return data
-}
-
-const fetchMatchAnimals = async (preferenceModel, token) => {
-  console.log('work in progress')
 }
 
 
@@ -45,5 +41,4 @@ const fetchMatchAnimals = async (preferenceModel, token) => {
 export default {
   fetchToken,
   fetchAnimals,
-  fetchMatchAnimals,
 }

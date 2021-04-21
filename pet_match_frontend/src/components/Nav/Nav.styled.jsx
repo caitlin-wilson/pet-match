@@ -12,11 +12,6 @@ const Nav = styled.nav`
     padding-left: 10px;
     font-size: 35px
   }
-
-  Link {
-    color: black;
-  }
-
 `
 
 const Welcome = styled.div`
@@ -50,6 +45,12 @@ const UL = styled.div`
 
   li {
     padding 15px;
+    color: ${({ theme }) => theme.text}
+
+  }
+
+  li:hover, {
+    color: ${({ theme }) => theme.secondary}
   }
 `
 const Burg = styled.div`

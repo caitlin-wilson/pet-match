@@ -8,7 +8,7 @@ class UserPreferences(models.Model):
     type = models.CharField(max_length=7)
     gender = models.CharField(max_length=13, default='no preference')
     age = models.CharField(max_length=13, default='no preference')
-    zip_code = models.CharField(max_length=5)
+    location = models.CharField(max_length=5)
 
     def __str__(self):
         return f"{self.user}'s preferences"

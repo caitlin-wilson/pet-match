@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { UL } from './Nav.styled';
 
 
@@ -6,11 +7,20 @@ import { UL } from './Nav.styled';
 const RightNav = ({ open }) => {
   return (
     <UL open={open}>
-      <li>Sign Up</li>
-      <li>Sign In</li>
-      <li>Profile</li>
-      <li>Sign Out</li>
-    </UL>
+      <Link style={{ textDecoration: 'none' }} to='/sign-up'>
+        <li>Sign Up</li>
+      </Link>
+      <Link style={{ textDecoration: 'none' }} to='/sign-in'>
+        <li>Sign In</li>
+      </Link>
+      <Link style={{ textDecoration: 'none' }} to='/profile'>
+        <li>Profile</li>
+      </Link>
+      <Link style={{ textDecoration: 'none' }} to='/'>
+        <li>Sign Out</li>
+      </Link>
+
+    </UL >
   )
 }
 

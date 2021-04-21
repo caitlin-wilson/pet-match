@@ -44,6 +44,8 @@ const App = () => {
     fetchToken()
   }, [tokenExpiration])
 
+  // console.log(PetFinderAPI.fetchMatchAnimals(token))
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />

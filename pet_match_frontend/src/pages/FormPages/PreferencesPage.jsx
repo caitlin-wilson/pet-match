@@ -17,7 +17,7 @@ const PreferencesPage = (props) => {
         type: event.target[0].value,
         gender: event.target[1].value,
         age: event.target[2].value,
-        zip_code: event.target.elements[3].value,
+        location: event.target.elements[3].value,
       }
       const request = await UserAPI.postPreferences(props.user.preferences.id, preferencesObj)
       // Change redirect to true.  When form is submitted user is redirected to profile page
