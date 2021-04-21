@@ -10,7 +10,9 @@ const ProfilePage = (props) => {
         <Banner>
           <h1>{props.user.first_name} {props.user.last_name}</h1>
           <div>
-            <button>Match!</button>
+            <Link to='/match'>
+              <button>Match!</button>
+            </Link>
             <Link to='/preferences'>
               <button className='button-inverse'>
                 Set Preferences

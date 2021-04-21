@@ -34,6 +34,10 @@ const fetchAnimals = async (token) => {
   return data
 }
 
+const fetchMatchAnimals = async (preferenceModel, token) => {
+  console.log('work in progress')
+}
+
 
 
 
@@ -41,4 +45,5 @@ const fetchAnimals = async (token) => {
 export default {
   fetchToken,
   fetchAnimals,
+  fetchMatchAnimals,
 }

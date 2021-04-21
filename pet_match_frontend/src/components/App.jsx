@@ -13,8 +13,9 @@ import SignUpPage from '../pages/FormPages/SignUpPage';
 import SignInPage from '../pages/FormPages/SignInPage';
 import ProfilePage from '../pages/ProfilePage/ProfilePage';
 import PreferencesPage from '../pages/FormPages/PreferencesPage';
+import MatchGamePage from '../pages/MatchGamePage/MatchGamePage';
 
-import NavBar from './Nav/NavBar'
+import NavBar from './Nav/NavBar';
 
 
 const App = () => {
@@ -55,6 +56,7 @@ const App = () => {
             <Route exact path='/sign-in' component={SignInPage} />
             <Route exact path='/profile' component={() => <ProfilePage user={user} />} />
             <Route exact path='/preferences' component={() => <PreferencesPage user={user} />} />
+            <Route exact path='/match' component={() => <MatchGamePage user={user} token={token} />} />
           </Switch>
         </BrowserRouter>
       </div>
