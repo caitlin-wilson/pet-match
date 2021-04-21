@@ -5,7 +5,7 @@ import { Form } from 'react-bootstrap';
 import UserAPI from '../../APIs/UserAPI';
 
 
-const PreferencesPage = (props) => {
+const PreferencesPage = ({ user }) => {
   // Set default redirect to false once form is submitted it will change to true and redirect to profile page.
   const [redirect, setRedirect] = useState(false)
 
@@ -19,7 +19,7 @@ const PreferencesPage = (props) => {
         age: event.target[2].value,
         location: event.target.elements[3].value,
       }
-      const request = await UserAPI.postPreferences(props.user.preferences.id, preferencesObj)
+      const request = await UserAPI.postPreferences(user.preferences.id, preferencesObj)
       // Change redirect to true.  When form is submitted user is redirected to profile page
       setRedirect(true)
       return request
@@ -30,6 +30,7 @@ const PreferencesPage = (props) => {
   }
 
   // Conditionally render page depending on wether redirect is true(=redirect), or false.
+  // **STRETCH GOAL: Add more animal types.**
   const renderPrefForm = () => {
     if (redirect) {
       return <Redirect to='/profile' />
@@ -44,8 +45,8 @@ const PreferencesPage = (props) => {
           <Form.Control as="select">
             <option value='Dog'>Dogs</option>
             <option value='Cat'>Cats</option>
-            <option value='Rabbit'>Rabbits</option>
-            <option value='Bird'>Birds</option>
+            {/* <option value='Rabbit'>Rabbits</option>
+            <option value='Bird'>Birds</option> */}
           </Form.Control>
           <Form.Label>Gender?</Form.Label>
           <Form.Control as="select">

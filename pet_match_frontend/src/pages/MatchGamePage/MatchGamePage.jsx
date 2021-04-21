@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PetFinderAPI from '../../APIs/PetFinderAPI';
 import CardDeck from '../../components/MatchGame/CardDeck';
 
-const MatchGamePage = (props) => {
+const MatchGamePage = ({ token, user }) => {
   // use user's preferences to set create a string to attach to the api call
   const [searchString, setSearchString] = useState(null)
   useEffect(() => {
@@ -10,9 +10,9 @@ const MatchGamePage = (props) => {
     let searchPrefs = ''
 
     // if the props have loaded proceed
-    if (props.token) {
+    if (token) {
       // loop through user's preferences 
-      for (const [key, value] of Object.entries(props.user.preferences)) {
+      for (const [key, value] of Object.entries(user.preferences)) {
         // remove id and user, only add preferences that are not 'no preference'
         if (key !== 'id' && key !== 'user' && value !== 'no preference') {
           // format string for API request
@@ -23,7 +23,7 @@ const MatchGamePage = (props) => {
       searchPrefs = searchPrefs.substring(0, searchPrefs.length - 1)
       setSearchString(searchPrefs)
     }
-  }, [props.token, props.user.preferences])
+  }, [token, user.preferences])
 
   // fetch search results from Pet Finder.  Brings back 1st 20 results
   // **STRETCH GOAL: Make it more random by switching up pages?**
@@ -31,12 +31,12 @@ const MatchGamePage = (props) => {
   useEffect(() => {
     const fetchAnimals = async () => {
       if (searchString) {
-        const allAnimals = await PetFinderAPI.fetchAnimals(searchString, props.token)
+        const allAnimals = await PetFinderAPI.fetchAnimals(searchString, token)
         setAnimals(allAnimals)
       }
     }
     fetchAnimals()
-  }, [props.token, searchString])
+  }, [token, searchString])
 
   // render animals from search results to be used for memory game
   const [matchAnimals, setMatchAnimals] = useState([])

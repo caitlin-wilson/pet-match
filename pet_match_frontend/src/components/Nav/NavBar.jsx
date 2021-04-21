@@ -4,7 +4,7 @@ import { Nav, Welcome } from './Nav.styled';
 import Burger from './Burger';
 
 
-const NavBar = (props) => {
+const NavBar = ({ user }) => {
   return (
     <Nav>
       <div className='logo'>
@@ -12,7 +12,7 @@ const NavBar = (props) => {
           PetMatch
         </Link>
       </div>
-      <Welcome>Welcome back, {props.user.first_name}!</Welcome>
+      <Welcome>Welcome back, {user.first_name}!</Welcome>
       <Burger />
     </Nav>
   )
