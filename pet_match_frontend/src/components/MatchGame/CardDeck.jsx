@@ -1,12 +1,13 @@
+// **STRETCH GOAL-Move this up to MatchPage and just use Cards as components?**
 import React, { useState, useEffect } from 'react';
-import { Page, GameHeader, Title, Incorrect, GameDeck, GameCard, Image } from './CardDeck.styled';
-
+import { Page, GameHeader, Title, Incorrect, GameDeck, GameCard, Image, WinnerDeck, AddAnimalCard, AnimalInfo, ButDiv } from './CardDeck.styled';
 
 const CardDeck = ({ animals }) => {
   const [deck, setDeck] = useState(null)
   const [openCard, setOpenCard] = useState([])
   const [matched, setMatched] = useState([])
   const [incorrect, setIncorrect] = useState(0)
+  const [gameOver, setGameOver] = useState(false)
 
   // set deck from animals prop passed from MatchGamePage
   useEffect(() => {
@@ -58,7 +59,6 @@ const CardDeck = ({ animals }) => {
         // if the cards don't match add 1 to the incorrect guesses counter
         setIncorrect(incorrect + 1)
       }
-
     }
 
     // if there are two cards in openCard (and not matched) set a time to flip them back unless
@@ -67,13 +67,62 @@ const CardDeck = ({ animals }) => {
     }
   }, [openCard])
 
+  useEffect(() => {
+    if (matched.length === 12) {
+      alert('You win!  Ready to meet the pets?')
+      setTimeout(() => setGameOver(true), 1000)
+    }
+  }, [matched])
+
   // wait for all animals to load to start game
-  if (!deck) {
+  if (!deck || deck.length < 12) {
     // **STRETCH GOAL - Implement a loading page**
     return (
-      <div></div>
+      <GameHeader>
+        <div className='placeholder'></div>
+        <Title>Loading Game...</Title>
+        <Incorrect>Incorrect Guess: {incorrect}</Incorrect>
+      </GameHeader>
     )
   }
+
+  // once the game is over load the animal cards to add to matches
+  if (!gameOver) {
+    return (
+      <Page>
+        <GameHeader>
+          <div className='placeholder'></div>
+          <Title>Meet Your Matches</Title>
+          <Incorrect>Add pets to you matches to see more details!</Incorrect>
+        </GameHeader>
+        <WinnerDeck>
+          {
+            animals.map((animal, index) => {
+              return (
+                <AddAnimalCard key={index}>
+                  <Image
+                    src={animal.photos[0].medium}
+                    alt={animal.name}
+                  />
+                  <AnimalInfo>
+                    <div className='name'><span className='name'>{animal.name}</span></div>
+                    <div className='field'>Age:&nbsp;&nbsp;&nbsp;<span className='detail'>{animal.age}</span></div>
+                    <div className='field'>Gender:&nbsp;&nbsp;&nbsp;<span className='detail'>{animal.gender}</span></div>
+                    <div className='field'>Size:&nbsp;&nbsp;&nbsp;<span className='detail'>{animal.size}</span></div>
+                    <div className='field'>Distance:&nbsp;&nbsp;&nbsp;<span className='detail'>{animal.distance}-ish mi</span></div>
+                  </AnimalInfo>
+                  <ButDiv>
+                    <button>Add</button>
+                  </ButDiv>
+                </AddAnimalCard>
+              )
+            })
+          }
+        </WinnerDeck>
+      </Page>
+    )
+  }
+
   return (
     <Page>
       <GameHeader>
@@ -81,6 +130,7 @@ const CardDeck = ({ animals }) => {
         <Title>Match 2 Meet!</Title>
         <Incorrect>Incorrect Guess: {incorrect}</Incorrect>
       </GameHeader>
+
       <GameDeck>
         {
           // create cards from deck
@@ -105,6 +155,7 @@ const CardDeck = ({ animals }) => {
                 <GameCard
                   key={index}
 
+                  //**STRETCH GOAL - Fix the picture still being there on the toggle!!**
                   // toggle class based on flipCard value
                   flipped={`${flipCard ? 'flipped' : ''}`}
                   onClick={() => handleFlip(`${index}~${animal.id}`)}

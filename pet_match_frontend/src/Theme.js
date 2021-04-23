@@ -8,3 +8,4 @@ export const theme = {
   text: '#000000',
 }
 
+//fonts: Primary = font-family: 'Cormorant', serif;   Secondary = font-family: 'Rubik', sans-serif;

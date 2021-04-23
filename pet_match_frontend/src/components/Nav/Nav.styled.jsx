@@ -62,7 +62,10 @@ const Burg = styled.div`
   display: flex;
   justify-content: space-around; 
   flex-flow: column nowrap;
-
+  
+  &:hover {
+    cursor: pointer;
+  }
   div {
     width: 2.5rem;
     height: .25rem;
