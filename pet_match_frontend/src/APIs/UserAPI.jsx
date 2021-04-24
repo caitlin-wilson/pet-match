@@ -41,6 +41,10 @@ const postPreferences = (userPrefID, preferencesObj) => {
   }
 }
 
+const postMatches = (userMatchID, matchObj) => {
+
+}
+
 
 export default {
   fetchUser,

@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.base import Model
 
 
 class UserPreferences(models.Model):
@@ -19,8 +18,8 @@ class UserPreferences(models.Model):
 
 
 class UserMatches(models.Model):
-    user = models.OneToOneField(
-        to=User,
+    user = models.ForeignKey(
+        User,
         on_delete=models.CASCADE,
         related_name='matches'
     )
