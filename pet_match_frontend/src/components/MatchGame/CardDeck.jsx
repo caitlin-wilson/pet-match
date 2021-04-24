@@ -10,7 +10,6 @@ const CardDeck = ({ animals, user }) => {
   const [matched, setMatched] = useState([])
   const [incorrect, setIncorrect] = useState(0)
   const [gameOver, setGameOver] = useState(false)
-  const [added, setAdded] = useState([])
 
   // set deck from animals prop passed from MatchGamePage
   useEffect(() => {

@@ -125,10 +125,6 @@ const ButDiv = styled.div`
     margin-top: 60px;
     padding: 5px 10px;
   } 
-
-  button:focus {
-    opacity: 0;
-  }
 `
 
 export {

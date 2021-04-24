@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { TopBar, Banner, ProfPhoto, Main } from './ProfilePage.styled';
+import { TopBar, Banner, ProfPhoto, Main, MatchDeck, AnimalCard, Image } from './ProfilePage.styled';
+import UserAPI from '../../APIs/UserAPI';
 
 const ProfilePage = ({ user }) => {
+  const [matches, setMatches] = useState([])
+
+  useEffect(() => {
+    if (user.matches && user.matches !== undefined) {
+      setMatches(user.matches)
+    }
+  }, [user.matches])
+
   return (
     <div>
       <TopBar>
@@ -23,6 +32,34 @@ const ProfilePage = ({ user }) => {
       </TopBar>
       <Main>
         <h1>Your Current Matches</h1>
+        <MatchDeck>
+          {
+            matches.map((animal) => {
+              return (
+                <AnimalCard>
+                  <Image
+                    src={animal.photo}
+                    alt={animal.name}
+                  />
+                  <Link to={{
+                    pathname: '/animal-info',
+                    animal: animal.api_id
+                  }}>
+                    <button className='button-inverse'>MORE INFO</button>
+                  </Link>
+                  <button
+                    onClick={() => {
+                      UserAPI.removeMatch(animal.id)
+                      window.location.reload()
+                    }}
+                  >
+                    REMOVE
+                  </button>
+                </AnimalCard>
+              )
+            })
+          }
+        </MatchDeck>
       </Main>
     </div>
   )

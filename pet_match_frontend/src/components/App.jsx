@@ -14,8 +14,10 @@ import SignInPage from '../pages/FormPages/SignInPage';
 import ProfilePage from '../pages/ProfilePage/ProfilePage';
 import PreferencesPage from '../pages/FormPages/PreferencesPage';
 import MatchGamePage from '../pages/MatchGamePage/MatchGamePage';
+import AnimalInfoPage from '../pages/AnimalInfo/AnimalInfoPage';
 
 import NavBar from './Nav/NavBar';
+import { AnimalInfo } from './MatchGame/CardDeck.styled';
 
 
 const App = () => {
@@ -59,6 +61,7 @@ const App = () => {
             <Route exact path='/profile' component={() => <ProfilePage user={user} />} />
             <Route exact path='/preferences' component={() => <PreferencesPage user={user} />} />
             <Route exact path='/match' component={() => <MatchGamePage user={user} token={token} />} />
+            <Route exact path='/animal-info' component={() => <AnimalInfoPage token={token} />} />
           </Switch>
         </BrowserRouter>
       </div>

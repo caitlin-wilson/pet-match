@@ -47,8 +47,9 @@ const ProfPhoto = styled.div`
 const Main = styled.div`
   position: relative;
   display: flex;
-  flex-flow: row;
+  flex-flow: column;
   justify-content: center;
+  align-items: center;
   margin: 40px;
 
   h1 {
@@ -57,12 +58,43 @@ const Main = styled.div`
   }
 `
 
+const MatchDeck = styled.div`
+  width: 100vw;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+`
 
+const AnimalCard = styled.div`
+  height: 315px;
+  width: 200px;
+  border-radius: 10px;
+  margin: 5px;
+  background-color: ${({ theme }) => theme.secondary};
 
+  button {
+    font-size: 12px;
+    padding: 10px;
+    width 180px;
+    margin: 5px 10px;
+  }
+`
+
+const Image = styled.img`
+  width: 190px;
+  height: 190px;
+  margin: 5px;
+  object-fit: contain;
+`
 
 export {
   TopBar,
   Banner,
   ProfPhoto,
   Main,
+  MatchDeck,
+  AnimalCard,
+  Image,
 }

@@ -56,9 +56,21 @@ const addMatch = (matchObj) => {
   }
 }
 
+const removeMatch = async (matchID) => {
+  try {
+    const response = await fetch(`${BASE_URL}user-matches/${matchID}`, {
+      method: 'DELETE'
+    })
+    return response;
+  } catch (error) {
+    console.error('ERROR DELETING MATCH', error)
+  }
+}
+
 
 export default {
   fetchUser,
   postPreferences,
   addMatch,
+  removeMatch,
 }

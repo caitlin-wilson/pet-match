@@ -25,13 +25,31 @@ const fetchToken = async () => {
 }
 
 const fetchAnimals = async (searchString, token) => {
-  const request = await fetch(`https://api.petfinder.com/v2/animals?${searchString}`, {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  })
-  const data = await request.json()
-  return data
+  try {
+    const request = await fetch(`https://api.petfinder.com/v2/animals?${searchString}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    const data = await request.json()
+    return data
+  } catch (error) {
+    console.log('ERROR FETCHING PET FINDER ANIMALS', error)
+  }
+}
+
+const fetchAnimal = async (animalID, token) => {
+  try {
+    const request = await fetch(`https://api.petfinder.com/v2/animals/${animalID}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    const data = await request.json()
+    return data
+  } catch (error) {
+    console.error('ERROR FETCHING ANIMAL INFO FROM PET FINDER', error)
+  }
 }
 
 
@@ -41,4 +59,5 @@ const fetchAnimals = async (searchString, token) => {
 export default {
   fetchToken,
   fetchAnimals,
+  fetchAnimal,
 }
