@@ -75,7 +75,7 @@ const CardDeck = ({ animals }) => {
   }, [matched])
 
   // wait for all animals to load to start game
-  if (!deck || deck.length < 12) {
+  if (!deck) {
     // **STRETCH GOAL - Implement a loading page**
     return (
       <GameHeader>
@@ -85,9 +85,8 @@ const CardDeck = ({ animals }) => {
       </GameHeader>
     )
   }
-
   // once the game is over load the animal cards to add to matches
-  if (!gameOver) {
+  if (gameOver) {
     return (
       <Page>
         <GameHeader>
@@ -112,7 +111,7 @@ const CardDeck = ({ animals }) => {
                     <div className='field'>Distance:&nbsp;&nbsp;&nbsp;<span className='detail'>{animal.distance}-ish mi</span></div>
                   </AnimalInfo>
                   <ButDiv>
-                    <button>Add</button>
+                    <button>ADD</button>
                   </ButDiv>
                 </AddAnimalCard>
               )

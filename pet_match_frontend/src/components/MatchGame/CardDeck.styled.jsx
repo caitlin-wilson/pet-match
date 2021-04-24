@@ -30,7 +30,7 @@ const Incorrect = styled.div`
   color: ${({ theme }) => theme.primary};
   width: 33vw;
   padding: 10px;
-  font-size: 2vw;
+  font-size: 1.5vw;
   text-align: center;
 `
 
@@ -88,6 +88,7 @@ const AddAnimalCard = styled.div`
   margin: 5px;
   border-radius: 10px;
   background-color: ${({ theme }) => theme.secondary};
+  color: ${({ theme }) => theme.text};
 `
 
 const AnimalInfo = styled.div`
@@ -95,16 +96,18 @@ const AnimalInfo = styled.div`
   display: flex;
   flex-flow: column;
   padding: 0 10px;
+  font-family: 'Rubik', sans-serif;
 
   .field {
-    font-family: 'Rubik', sans-serif;
     font-size: 14px;
   }
 
   .name {
-    font-size: 20px;
+    margin: 10px 0px;
+    font-size: 24px;
     text-decoration: underline;
     align-self: center;
+    color: ${({ theme }) => theme.primary};
   }
 
   .detail {
@@ -115,6 +118,13 @@ const AnimalInfo = styled.div`
 
 const ButDiv = styled.div`
   margin: 150px 33px;
+  display: flex;
+  justify-content: center;
+  
+  button {
+    margin-top: 20px;
+    padding: 5px 10px;
+  } 
 `
 
 export {
