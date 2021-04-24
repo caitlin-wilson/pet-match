@@ -41,12 +41,24 @@ const postPreferences = (userPrefID, preferencesObj) => {
   }
 }
 
-const postMatches = (userMatchID, matchObj) => {
-
+const addMatch = (matchObj) => {
+  try {
+    const request = fetch(`${BASE_URL}user-matches/`, {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify(matchObj)
+    })
+    return request
+  } catch (error) {
+    console.error('ERROR ADDING ANIMAL TO MATCHES', error)
+  }
 }
 
 
 export default {
   fetchUser,
   postPreferences,
+  addMatch,
 }

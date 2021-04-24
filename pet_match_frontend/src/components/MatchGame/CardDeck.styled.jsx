@@ -82,7 +82,7 @@ const WinnerDeck = styled.div`
 `
 
 const AddAnimalCard = styled.div`
-  height: 450px;
+  height: 500px;
   width: 210px;
   padding: 5px;
   margin: 5px;
@@ -122,9 +122,13 @@ const ButDiv = styled.div`
   justify-content: center;
   
   button {
-    margin-top: 20px;
+    margin-top: 60px;
     padding: 5px 10px;
   } 
+
+  button:focus {
+    opacity: 0;
+  }
 `
 
 export {

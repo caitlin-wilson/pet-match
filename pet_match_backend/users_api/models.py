@@ -29,6 +29,7 @@ class UserMatches(models.Model):
     size = models.CharField(max_length=7)
     distance = models.CharField(max_length=7)
     api_id = models.IntegerField()
+    photo = models.CharField(max_length=1000)
 
     def __str__(self):
         return f'{self.name}'

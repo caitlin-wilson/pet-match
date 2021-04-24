@@ -38,4 +38,5 @@ export const GlobalStyles = createGlobalStyle`
   button:hover, .submit:hover {
     background-color: ${({ theme }) => theme.primaryhover};
   }
+  
 `

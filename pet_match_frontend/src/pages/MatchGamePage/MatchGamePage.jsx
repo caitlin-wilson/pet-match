@@ -64,7 +64,7 @@ const MatchGamePage = ({ token, user }) => {
 
   return (
     <div>
-      <CardDeck animals={matchAnimals} />
+      <CardDeck animals={matchAnimals} user={user} />
     </div>
   )
 }

@@ -1,13 +1,16 @@
 // **STRETCH GOAL-Move this up to MatchPage and just use Cards as components?**
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Page, GameHeader, Title, Incorrect, GameDeck, GameCard, Image, WinnerDeck, AddAnimalCard, AnimalInfo, ButDiv } from './CardDeck.styled';
+import UserAPI from '../../APIs/UserAPI';
 
-const CardDeck = ({ animals }) => {
+const CardDeck = ({ animals, user }) => {
   const [deck, setDeck] = useState(null)
   const [openCard, setOpenCard] = useState([])
   const [matched, setMatched] = useState([])
   const [incorrect, setIncorrect] = useState(0)
   const [gameOver, setGameOver] = useState(false)
+  const [added, setAdded] = useState([])
 
   // set deck from animals prop passed from MatchGamePage
   useEffect(() => {
@@ -85,8 +88,9 @@ const CardDeck = ({ animals }) => {
       </GameHeader>
     )
   }
+
   // once the game is over load the animal cards to add to matches
-  if (gameOver) {
+  if (!gameOver) {
     return (
       <Page>
         <GameHeader>
@@ -96,6 +100,7 @@ const CardDeck = ({ animals }) => {
         </GameHeader>
         <WinnerDeck>
           {
+            // show a card for each animal that was used for the match game
             animals.map((animal, index) => {
               return (
                 <AddAnimalCard key={index}>
@@ -111,12 +116,33 @@ const CardDeck = ({ animals }) => {
                     <div className='field'>Distance:&nbsp;&nbsp;&nbsp;<span className='detail'>{animal.distance}-ish mi</span></div>
                   </AnimalInfo>
                   <ButDiv>
-                    <button>ADD</button>
+                    <button
+
+                      // if a user clicks add the animal will be added to their matches on their profile page
+                      onClick={() => {
+                        const animalObj = {
+                          user: user.id,
+                          name: animal.name,
+                          age: animal.age,
+                          gender: animal.gender,
+                          size: animal.size,
+                          distance: animal.distance,
+                          api_id: animal.id,
+                          photo: animal.photos[0].medium
+                        }
+                        UserAPI.addMatch(animalObj)
+                      }}
+                    >
+                      ADD
+                    </button>
                   </ButDiv>
                 </AddAnimalCard>
               )
             })
           }
+          <Link to='/profile'>
+            <button className='button-inverse'>Go to your profile</button>
+          </Link>
         </WinnerDeck>
       </Page>
     )

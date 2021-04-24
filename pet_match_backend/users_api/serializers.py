@@ -13,13 +13,14 @@ class UserMatchesSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserMatches
         fields = ['id', 'user', 'name', 'age',
-                  'gender', 'size', 'distance', 'api_id']
+                  'gender', 'size', 'distance', 'api_id', 'photo']
 
 
 class UserSerializer(serializers.ModelSerializer):
     preferences = UserPreferencesSerializer(required=False)
+    matches = UserMatchesSerializer(many=True, required=False)
 
     class Meta:
         model = User
         fields = ['id', 'first_name', 'last_name',
-                  'email', 'password', 'preferences']
+                  'email', 'password', 'preferences', 'matches']
