@@ -58,10 +58,10 @@ const App = () => {
             <Route exact path='/' component={LandingPage} />
             <Route exact path='/sign-up' component={SignUpPage} />
             <Route exact path='/sign-in' component={SignInPage} />
-            <Route exact path='/profile' component={() => <ProfilePage user={user} />} />
+            <Route exact path='/profile' component={() => <ProfilePage user={user} token={token} />} />
             <Route exact path='/preferences' component={() => <PreferencesPage user={user} />} />
             <Route exact path='/match' component={() => <MatchGamePage user={user} token={token} />} />
-            <Route exact path='/animal-info' component={() => <AnimalInfoPage token={token} />} />
+            <Route exact path='/animal-info/:animal_id' component={AnimalInfoPage} />
           </Switch>
         </BrowserRouter>
       </div>

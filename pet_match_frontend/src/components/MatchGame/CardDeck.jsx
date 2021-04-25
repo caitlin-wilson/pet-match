@@ -89,7 +89,7 @@ const CardDeck = ({ animals, user }) => {
   }
 
   // once the game is over load the animal cards to add to matches
-  if (!gameOver) {
+  if (gameOver) {
     return (
       <Page>
         <GameHeader>

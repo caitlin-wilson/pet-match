@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { TopBar, Banner, ProfPhoto, Main, MatchDeck, AnimalCard, Image } from './ProfilePage.styled';
 import UserAPI from '../../APIs/UserAPI';
 
-const ProfilePage = ({ user }) => {
+const ProfilePage = ({ user, token }) => {
   const [matches, setMatches] = useState([])
 
   useEffect(() => {
@@ -42,8 +42,11 @@ const ProfilePage = ({ user }) => {
                     alt={animal.name}
                   />
                   <Link to={{
-                    pathname: '/animal-info',
-                    animal: animal.api_id
+                    pathname: `/animal-info/${animal.api_id}`,
+                    state: {
+                      animal: animal.api_id,
+                      token: token
+                    }
                   }}>
                     <button className='button-inverse'>MORE INFO</button>
                   </Link>
