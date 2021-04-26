@@ -17,7 +17,6 @@ const fetchToken = async () => {
       })
     })
     const data = await request.json()
-    // const response = await JSON.stringify(data.access_token)
     return data.access_token
   } catch (error) {
     console.error('ERROR FETCHING PET FINDER AUTH TOKEN', error)
@@ -52,6 +51,19 @@ const fetchAnimal = async (animalID, token) => {
   }
 }
 
+const fetchOrg = async (orgID, token) => {
+  try {
+    const request = await fetch(`https://api.petfinder.com/v2/organizations/${orgID}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    const data = await request.json()
+    return data
+  } catch (error) {
+    console.error('ERROR FETCHING ORGANIZATION INFO FROM PET FINDER', error)
+  }
+}
 
 
 
@@ -60,4 +72,5 @@ export default {
   fetchToken,
   fetchAnimals,
   fetchAnimal,
+  fetchOrg,
 }

@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PetFinderAPI from '../../APIs/PetFinderAPI';
-import { Page, Left, Photo, Right, Field, Info, Description } from './AnimalnfoPage.styled';
+import { Page, Left, Photo, Right, Field, Info } from './AnimalnfoPage.styled';
+import Map from '../../components/Map/Map'
 
 
 const AnimalInfoPage = (props) => {
+  const [animalInfo, setAnimalInfo] = useState(null)
+
   const animalID = props.location.state.animal
   const token = props.location.state.token
 
-  const [animalInfo, setAnimalInfo] = useState(null)
+  // use PetFinderAPI to fetch shelter details
   useEffect(() => {
     const fetchAnimal = async () => {
       const animal = await PetFinderAPI.fetchAnimal(animalID, token)
@@ -17,7 +20,7 @@ const AnimalInfoPage = (props) => {
     fetchAnimal()
   }, [animalID, token])
 
-  console.log(animalInfo)
+  //after animal details have loaded return page
   if (animalInfo) {
     return (
       <Page>
@@ -26,10 +29,12 @@ const AnimalInfoPage = (props) => {
             src={animalInfo.animal.photos[0].large}
             alt={animalInfo.animal.name}
           />
+          <h4>{animalInfo.animal.name} may be closer than you think.</h4>
+          <Map org={animalInfo.animal.organization_id} token={token} />
         </Left>
         <Right>
           <h1>{animalInfo.animal.name}</h1>
-          <div>
+          <div className='info sheet'>
             <Field>
               Species:<br />
               Primary Breed:<br />

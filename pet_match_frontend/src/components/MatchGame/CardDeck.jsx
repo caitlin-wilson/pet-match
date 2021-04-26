@@ -1,5 +1,5 @@
 // **STRETCH GOAL-Move this up to MatchPage and just use Cards as components?**
-import React, { useState, useEffect } from 'react';
+import React, { router, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Page, GameHeader, Title, Incorrect, GameDeck, GameCard, Image, WinnerDeck, AddAnimalCard, AnimalInfo, ButDiv } from './CardDeck.styled';
 import UserAPI from '../../APIs/UserAPI';
@@ -76,9 +76,9 @@ const CardDeck = ({ animals, user }) => {
     }
   }, [matched])
 
+
   // wait for all animals to load to start game
   if (!deck) {
-    // **STRETCH GOAL - Implement a loading page**
     return (
       <GameHeader>
         <div className='placeholder'></div>
@@ -139,7 +139,7 @@ const CardDeck = ({ animals, user }) => {
               )
             })
           }
-          <Link to='/profile'>
+          <Link to='/profile' >
             <button className='button-inverse'>Go to your profile</button>
           </Link>
         </WinnerDeck>
@@ -159,7 +159,9 @@ const CardDeck = ({ animals, user }) => {
         {
           // create cards from deck
           deck.map((animal, index) => {
-
+            if (animal === undefined) {
+              window.location.reload()
+            }
             // set initial flip value
             let flipCard = true;
 

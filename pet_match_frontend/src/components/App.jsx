@@ -17,7 +17,6 @@ import MatchGamePage from '../pages/MatchGamePage/MatchGamePage';
 import AnimalInfoPage from '../pages/AnimalInfo/AnimalInfoPage';
 
 import NavBar from './Nav/NavBar';
-import { AnimalInfo } from './MatchGame/CardDeck.styled';
 
 
 const App = () => {
@@ -46,8 +45,8 @@ const App = () => {
     fetchToken()
   }, [tokenExpiration])
 
-  // console.log(PetFinderAPI.fetchMatchAnimals(token))
 
+  //**STRETCH GOAL-Figure out how to reload pages when you route to a new one**
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />

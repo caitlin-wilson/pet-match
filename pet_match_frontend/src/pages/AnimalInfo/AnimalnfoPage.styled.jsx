@@ -2,34 +2,58 @@ import styled from 'styled-components';
 
 const Page = styled.div`
   width: 100vw;
+  height: 90vh;
+  padding: 20px;
   display: flex;
   flex-flow: row;
-  padding: 20px;
-`
-
-const Left = styled.div`
-  width: 50vw;
-  display: flex;
-  flex-flow: column; 
+  justify-content: center;
   align-items: center;
 `
 
+const Left = styled.div`
+  width: 45vw;
+  display: flex;
+  flex-flow: column; 
+  align-items: center;
+  margin-left: 5vw;
+  
+  h4 {
+    margin: 20px;
+    color: ${({ theme }) => theme.primary};
+    font-size: 1.6vw;
+  }
+
+  iframe {
+    border: 0;
+    height: 15vw;
+    width: 22vw;
+  }
+`
+
 const Photo = styled.img`
-  height: 350px;
-  width: 350px;
+  height: 22vw;
+  width: 22vw;
+  border: 2px solid ${({ theme }) => theme.primary};
   border-radius: 10px;
-  object-fit: contain;
+  object-fit: cover;
 `
 
 const Right = styled.div`
-
-  width: 50vw;
+  background-color: ${({ theme }) => theme.white};
+  border: 2px solid ${({ theme }) => theme.secondary};
+  border-radius: 10px;
   display: flex;
   flex-flow: column;
+  margin-right: 10vw;
+  max-width: 40vw;
+
+
   
   h1 {
+    font-size: 2.5vw;
     color: ${({ theme }) => theme.primary};
-    margin-left: 14vw;
+    align-self: center;
+    padding-top: 10px;
   }
 
   div {
@@ -38,32 +62,32 @@ const Right = styled.div`
   }
 
   .buttons{
-    width: 35vw;
+    max-width: 40vw;
     display: flex;
     justify-content: center;
-
+    align-items: center;
+    padding-bottom: 10px;
   }
 
   button {
     margin: 10px;
-    padding: 10px;
-    font-size: 16px;
+    padding: .75vw;
+    font-size: 1vw;
   }
 `
 
 const Field = styled.div`
-  width: 18vw;
-  font-size: 2vw;
+  font-size: 1.5vw;
   font-family: 'Rubik', sans-serif;
   display: flex;
   flex-flow: row; 
   text-align: right;
   padding: 20px;
+  width: 30vw;
 `
 
 const Info = styled.div`
-  width: 30vw;
-  font-size: 2vw;
+  font-size: 1.5vw;
   font-family: 'Cormorant', serif;
   display: flex;
   flex-flow: column; 
