@@ -1,6 +1,5 @@
-from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import UserPreferences, UserMatches
+from .models import User, UserPreferences, UserMatches
 
 
 class UserPreferencesSerializer(serializers.ModelSerializer):

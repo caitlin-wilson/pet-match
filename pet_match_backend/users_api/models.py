@@ -1,5 +1,12 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.db.models.fields import CharField, EmailField
+
+
+class User(models.Model):
+    first_name = CharField(max_length=100)
+    last_name = CharField(max_length=100)
+    email = EmailField()
+    password = CharField(max_length=100)
 
 
 class UserPreferences(models.Model):

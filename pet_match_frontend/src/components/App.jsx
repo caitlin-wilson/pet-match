@@ -20,14 +20,14 @@ import NavBar from './Nav/NavBar';
 
 
 const App = () => {
-  // hard coded set user.  Will have to be replaced  authentication
-  const [user, setUser] = useState({})
-  useEffect(() => {
-    (async () => {
-      const data = await UserAPI.fetchUser(1)
-      setUser(data)
-    })()
-  }, [])
+  const [user, setUser] = useState('')
+  const [signedIn, setSignedIn] = useState(false)
+
+  const handleLogin = async (user) => {
+    const users = await UserAPI.fetchUserList()
+    console.log(user)
+  }
+
 
   // keep track of Pet Finder token.  Expires every hour
   const [tokenExpiration, SetTokenExpiration] = useState(0)
@@ -56,7 +56,7 @@ const App = () => {
           <Switch>
             <Route exact path='/' component={LandingPage} />
             <Route exact path='/sign-up' component={SignUpPage} />
-            <Route exact path='/sign-in' component={SignInPage} />
+            <Route exact path='/sign-in' component={() => <SignInPage handleLogin={handleLogin} />} />
             <Route exact path='/profile' component={() => <ProfilePage user={user} token={token} />} />
             <Route exact path='/preferences' component={() => <PreferencesPage user={user} />} />
             <Route exact path='/match' component={() => <MatchGamePage user={user} token={token} />} />

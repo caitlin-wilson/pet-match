@@ -1,5 +1,5 @@
 // **STRETCH GOAL-Move this up to MatchPage and just use Cards as components?**
-import React, { router, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Page, GameHeader, Title, Incorrect, GameDeck, GameCard, Image, WinnerDeck, AddAnimalCard, AnimalInfo, ButDiv } from './CardDeck.styled';
 import UserAPI from '../../APIs/UserAPI';
@@ -67,7 +67,7 @@ const CardDeck = ({ animals, user }) => {
     if (openCard.length === 2) {
       setTimeout(() => setOpenCard([]), 300)
     }
-  }, [openCard])
+  }, [incorrect, matched, openCard])
 
   useEffect(() => {
     if (matched.length === 12) {

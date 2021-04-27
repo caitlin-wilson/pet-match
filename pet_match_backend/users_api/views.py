@@ -1,5 +1,4 @@
-from .models import UserPreferences, UserMatches
-from django.contrib.auth.models import User
+from .models import UserPreferences, UserMatches, User
 from .serializers import UserPreferencesSerializer, UserMatchesSerializer, UserSerializer
 from rest_framework import viewsets
 

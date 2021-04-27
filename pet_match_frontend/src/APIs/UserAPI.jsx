@@ -2,6 +2,38 @@
 const BASE_URL = 'http://localhost:8000/'
 
 
+const addUser = async (userObj) => {
+  try {
+    const request = await fetch(`${BASE_URL}users/`, {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify(userObj)
+    })
+    return request
+
+  } catch (error) {
+    console.error('ERROR ADDING NEW USER', error)
+  }
+}
+
+const fetchUserList = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}users/`)
+    const data = response.json()
+
+    if (!response.ok) {
+      const error = (data && data.message) || response.statusText
+      return Promise.reject(error)
+    }
+
+    return data;
+  } catch (error) {
+    console.error('ERROR FETCHING USER LIST', error)
+  }
+}
+
 const fetchUser = async (userID) => {
   try {
     // make call to user api
@@ -69,6 +101,8 @@ const removeMatch = async (matchID) => {
 
 
 export default {
+  addUser,
+  fetchUserList,
   fetchUser,
   postPreferences,
   addMatch,
