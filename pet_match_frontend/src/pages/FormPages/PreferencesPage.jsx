@@ -8,7 +8,7 @@ import UserAPI from '../../APIs/UserAPI';
 const PreferencesPage = ({ user }) => {
   // Set default redirect to false once form is submitted it will change to true and redirect to profile page.
   const [redirect, setRedirect] = useState(false)
-
+  console.log(user)
   // Submit for to api call and save changes to user's preferences.
   const savePreferences = async (event) => {
     try {
