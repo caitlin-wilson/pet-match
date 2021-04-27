@@ -8,9 +8,9 @@ const SignUpPage = () => {
 
     <form>
       <Page>
-        <label for='email'>Email Address</label>
+        <label value='email'>Email Address</label>
         <input type='text'></input>
-        <label for='password'>Password</label>
+        <label value='password'>Password</label>
         <input type='password'></input>
         <Link to='/profile'>
           <input className='submit' type='submit' value='SIGN IN'></input>

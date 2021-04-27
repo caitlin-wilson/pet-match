@@ -12,7 +12,7 @@ const NavBar = ({ user }) => {
           PetMatch
         </Link>
       </div>
-      <Welcome>Welcome back, {user.first_name}!</Welcome>
+      <Welcome>Welcome back, {user.username}!</Welcome>
       <Burger />
     </Nav>
   )

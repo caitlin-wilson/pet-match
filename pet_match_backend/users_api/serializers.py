@@ -18,21 +18,30 @@ class UserMatchesSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+    preferences = UserPreferencesSerializer(required=False)
+    matches = UserMatchesSerializer(many=True, required=False)
+
     class Meta:
         model = User
-        fields = ['id', 'username', 'email']
+        fields = ['id', 'username', 'email', 'preferences', 'matches']
 
 
 class RegisterSerializer(serializers.ModelSerializer):
+    preferences = serializers.PrimaryKeyRelatedField(read_only=True)
+    matches = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'password']
+        fields = ['id', 'username', 'email',
+                  'preferences', 'matches', 'password']
         extra_kwargs = {
             'password': {'write_only': True}}
 
     def create(self, validated_data):
         user = User.objects.create_user(
             validated_data['username'], validated_data['email'], validated_data['password'])
+        # user.preferences_set.add
+        prefrences = UserPreferences.objects.create(user=user)
         return user
 
 

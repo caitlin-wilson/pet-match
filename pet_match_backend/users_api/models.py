@@ -8,10 +8,10 @@ class UserPreferences(models.Model):
         on_delete=models.CASCADE,
         related_name='preferences'
     )
-    type = models.CharField(max_length=7)
+    type = models.CharField(max_length=7, default='Dog')
     gender = models.CharField(max_length=13, default='no preference')
     age = models.CharField(max_length=13, default='no preference')
-    location = models.CharField(max_length=5)
+    location = models.CharField(max_length=5, default='90210')
 
     def __str__(self):
         return f"{self.user}'s preferences"

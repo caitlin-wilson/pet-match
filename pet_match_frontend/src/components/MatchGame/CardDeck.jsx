@@ -67,7 +67,7 @@ const CardDeck = ({ animals, user }) => {
     if (openCard.length === 2) {
       setTimeout(() => setOpenCard([]), 300)
     }
-  }, [openCard])
+  }, [incorrect, matched, openCard])
 
   useEffect(() => {
     if (matched.length === 12) {

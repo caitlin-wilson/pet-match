@@ -2,6 +2,24 @@
 const BASE_URL = 'http://localhost:8000/'
 
 
+const createUser = async (userObj) => {
+  // make fetch call to api
+  try {
+    // add header with PATCH method to update user preferences
+    const request = fetch(`${BASE_URL}user/auth/register`, {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      // convert object to JSON
+      body: JSON.stringify(userObj)
+    })
+    return request
+  } catch (error) {
+    console.error('ERROR ADDING NEW USER', error)
+  }
+}
+
 const fetchUser = async (userID) => {
   try {
     // make call to user api
@@ -69,6 +87,7 @@ const removeMatch = async (matchID) => {
 
 
 export default {
+  createUser,
   fetchUser,
   postPreferences,
   addMatch,

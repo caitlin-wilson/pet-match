@@ -1,30 +1,60 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
+import UserAPI from '../../APIs/UserAPI';
 import { Page } from './FormPages.styled';
 
 
 const SignUpPage = () => {
-  return (
+  const [redirect, setRedirect] = useState(false)
 
-    <form>
-      <Page>
-        <label for='first-name'>First Name</label>
-        <input type='text'></input>
-        <label for='last-name'>Last Name</label>
-        <input type='text'></input>
-        <label for='email'>Email Address</label>
-        <input type='text'></input>
-        <label for='password'>Password</label>
-        <input type='password'></input>
-        <label for='password2'>Confirm Password</label>
-        <input type='password'></input>
-        <label for='zip-code'>Zip Code</label>
-        <input type='text'></input>
-        <Link to='/sign-in'>
+  const handleSubmit = async (event) => {
+    try {
+      event.preventDefault()
+
+      let password = ''
+
+      if (event.target[2].value === event.target[3].value) {
+        password = event.target[2].value
+      } else {
+        alert('Passwords do not match.')
+      }
+      const newUserObject = {
+        username: event.target[0].value,
+        email: event.target[1].value,
+        password: password,
+      }
+      const request = await UserAPI.createUser(newUserObject)
+      setRedirect(true)
+      return request
+    } catch (error) {
+      console.error('ERROR WITH SIGN UP REQUEST', error)
+    }
+  }
+  const renderForm = () => {
+    if (redirect) {
+      return <Redirect to='/sign-in' />
+    }
+    return (
+      <form onSubmit={handleSubmit}>
+        <Page>
+          <label value='username'>Username</label>
+          <input type='text'></input>
+          <label value='email'>Email Address</label>
+          <input type='text'></input>
+          <label value='password'>Password</label>
+          <input type='password'></input>
+          <label value='password2'>Confirm Password</label>
+          <input type='password'></input>
           <input className='submit' type='submit' value='SIGN UP'></input>
-        </Link>
-      </Page>
-    </form>
+        </Page>
+      </form>
+    )
+  }
+  // Call conditional rendering function
+  return (
+    <div>
+      {renderForm()}
+    </div>
   )
 }
 

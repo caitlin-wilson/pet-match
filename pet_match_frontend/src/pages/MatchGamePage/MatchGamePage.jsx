@@ -16,7 +16,7 @@ const MatchGamePage = ({ token, user }) => {
         // remove id and user, only add preferences that are not 'no preference'
         if (key !== 'id' && key !== 'user' && value !== 'no preference') {
           // format string for API request
-          searchPrefs += `${key}=${value};`
+          searchPrefs += `${key}=${value}&`
         }
       }
       //remove the last '&' from string
@@ -24,6 +24,7 @@ const MatchGamePage = ({ token, user }) => {
       setSearchString(searchPrefs)
     }
   }, [token, user.preferences])
+
 
   // fetch search results from Pet Finder.  Brings back 1st 20 results
   // **STRETCH GOAL: Make it more random by switching up pages?**
@@ -43,6 +44,7 @@ const MatchGamePage = ({ token, user }) => {
   useEffect(() => {
     // once animals have loaded
     if (animals) {
+      console.log(animals)
       // randomize the index numbers of the animal array
       let indexes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
       let j, x, i;
