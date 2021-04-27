@@ -15,10 +15,31 @@ const createUser = async (userObj) => {
       body: JSON.stringify(userObj)
     })
     return request
+    // catch errors
   } catch (error) {
-    console.error('ERROR ADDING NEW USER', error)
+    console.error('ERROR MAKING NEW USER REQUEST TO USER API', error)
   }
 }
+
+const signInUser = async (userObj) => {
+  //fetch call to api
+  try {
+    const request = fetch(`${BASE_URL}user/auth/login`, {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      // convert user obj to JSON
+      body: JSON.stringify(userObj)
+    })
+    // return request with token
+    return request
+    // catch errors
+  } catch (error) {
+    console.error('ERROR MAKING SIGN IN REQUEST TO USER API', error)
+  }
+}
+
 
 const fetchUser = async (userID) => {
   try {
@@ -88,6 +109,7 @@ const removeMatch = async (matchID) => {
 
 export default {
   createUser,
+  signInUser,
   fetchUser,
   postPreferences,
   addMatch,

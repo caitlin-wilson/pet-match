@@ -1,22 +1,54 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
+import UserAPI from '../../APIs/UserAPI';
 import { Page } from './FormPages.styled';
 
 
 const SignUpPage = () => {
-  return (
+  const [redirect, setRedirect] = useState(false)
 
-    <form>
-      <Page>
-        <label value='email'>Email Address</label>
-        <input type='text'></input>
-        <label value='password'>Password</label>
-        <input type='password'></input>
-        <Link to='/profile'>
+  const handleLogin = async (event) => {
+    try {
+      event.preventDefault()
+      const userObj = {
+        username: event.target[0].value,
+        password: event.target[1].value
+      }
+      console.log(userObj)
+      const response = await UserAPI.signInUser(userObj)
+      const data = await response.json()
+      console.log(data)
+
+      if (data.token) {
+        localStorage.setItem('auth-user', `${data.token}`)
+        setRedirect(true)
+      }
+
+    } catch (error) {
+      console.error('ERROR SIGNING USER IN', error)
+    }
+  }
+
+  const renderForm = () => {
+    if (redirect) {
+      return <Redirect to='/profile' />
+    }
+    return (
+      <form onSubmit={handleLogin}>
+        <Page>
+          <label value='email'>Email Address</label>
+          <input type='text'></input>
+          <label value='password'>Password</label>
+          <input type='password'></input>
           <input className='submit' type='submit' value='SIGN IN'></input>
-        </Link>
-      </Page>
-    </form>
+        </Page>
+      </form>
+    )
+  }
+  return (
+    <div>
+      {renderForm()}
+    </div>
   )
 }
 
