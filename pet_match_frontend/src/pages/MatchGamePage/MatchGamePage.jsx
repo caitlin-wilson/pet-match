@@ -8,7 +8,6 @@ const MatchGamePage = ({ token, user }) => {
   useEffect(() => {
     // establish empty string for preference results
     let searchPrefs = ''
-
     // if the props have loaded proceed
     if (token) {
       // loop through user's preferences 
@@ -44,7 +43,6 @@ const MatchGamePage = ({ token, user }) => {
   useEffect(() => {
     // once animals have loaded
     if (animals) {
-      console.log(animals)
       // randomize the index numbers of the animal array
       let indexes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
       let j, x, i;

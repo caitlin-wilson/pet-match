@@ -129,7 +129,7 @@ const CardDeck = ({ animals, user }) => {
                           api_id: animal.id,
                           photo: animal.photos[0].medium
                         }
-                        UserAPI.addMatch(animalObj)
+                        UserAPI.addMatch(animalObj, localStorage.getItem('auth-user'))
                       }}
                     >
                       ADD

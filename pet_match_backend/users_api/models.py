@@ -23,13 +23,15 @@ class UserMatches(models.Model):
         on_delete=models.CASCADE,
         related_name='matches'
     )
-    name = models.CharField(max_length=50)
-    age = models.CharField(max_length=13)
-    gender = models.CharField(max_length=13)
-    size = models.CharField(max_length=7)
-    distance = models.CharField(max_length=7)
-    api_id = models.IntegerField()
-    photo = models.CharField(max_length=1000)
+    name = models.CharField(max_length=50, default='Your 1st Match')
+    age = models.CharField(max_length=13, default='Ageless')
+    gender = models.CharField(max_length=13, default='')
+    size = models.CharField(max_length=7, default='')
+    distance = models.CharField(max_length=7, default='0')
+    api_id = models.IntegerField(default=0)
+    photo = models.CharField(
+        max_length=1000, default='https://media.istockphoto.com/vectors/paw_print-vector-id931785704?k=6&m=931785704&s=612x612&w=0&h=nRInK4vazDBj-Jt8qJs2YJop_BKE0MjIcNAx2rRgwgI='
+    )
 
     def __str__(self):
         return f'{self.name}'

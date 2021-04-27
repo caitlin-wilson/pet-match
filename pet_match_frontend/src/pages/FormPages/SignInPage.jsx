@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import UserAPI from '../../APIs/UserAPI';
 import { Page } from './FormPages.styled';
@@ -14,10 +14,8 @@ const SignUpPage = () => {
         username: event.target[0].value,
         password: event.target[1].value
       }
-      console.log(userObj)
       const response = await UserAPI.signInUser(userObj)
       const data = await response.json()
-      console.log(data)
 
       if (data.token) {
         localStorage.setItem('auth-user', `${data.token}`)
@@ -36,7 +34,7 @@ const SignUpPage = () => {
     return (
       <form onSubmit={handleLogin}>
         <Page>
-          <label value='email'>Email Address</label>
+          <label value='username'>Username</label>
           <input type='text'></input>
           <label value='password'>Password</label>
           <input type='password'></input>

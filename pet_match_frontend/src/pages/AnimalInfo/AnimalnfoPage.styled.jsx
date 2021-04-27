@@ -83,7 +83,6 @@ const Field = styled.div`
   flex-flow: row; 
   text-align: right;
   padding: 20px;
-  width: 30vw;
 `
 
 const Info = styled.div`

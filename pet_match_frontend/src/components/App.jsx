@@ -22,16 +22,25 @@ import NavBar from './Nav/NavBar';
 const App = () => {
   // hard coded set user.  Will have to be replaced  authentication
   const [user, setUser] = useState({})
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
   useEffect(() => {
-    (async () => {
-      const data = await UserAPI.fetchUser(1)
-      setUser(data)
-    })()
+    const getUser = async () => {
+      if (localStorage.getItem('auth-user') !== null) {
+        let response = await UserAPI.fetchUser(localStorage.getItem('auth-user'))
+        if (response.username) {
+          setUser(response)
+          setIsLoggedIn(true)
+        }
+      }
+    }
+    getUser()
   }, [])
 
   // keep track of Pet Finder token.  Expires every hour
   const [tokenExpiration, SetTokenExpiration] = useState(0)
   const [token, setToken] = useState(null)
+
   useEffect(() => {
     const now = Date.now()
     // if the token has expired set a new token
@@ -45,14 +54,13 @@ const App = () => {
     fetchToken()
   }, [tokenExpiration])
 
-
   //**STRETCH GOAL-Figure out how to reload pages when you route to a new one**
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <div>
         <BrowserRouter>
-          <NavBar user={user} />
+          <NavBar isLoggedIn={isLoggedIn} user={user} />
           <Switch>
             <Route exact path='/' component={LandingPage} />
             <Route exact path='/sign-up' component={SignUpPage} />

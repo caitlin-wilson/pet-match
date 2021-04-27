@@ -52,7 +52,7 @@ const ProfilePage = ({ user, token }) => {
                   </Link>
                   <button
                     onClick={() => {
-                      UserAPI.removeMatch(animal.id)
+                      UserAPI.removeMatch(animal.id, localStorage.getItem('auth-user'))
                       window.location.reload()
                     }}
                   >

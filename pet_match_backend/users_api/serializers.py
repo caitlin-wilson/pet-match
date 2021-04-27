@@ -19,7 +19,7 @@ class UserMatchesSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     preferences = UserPreferencesSerializer(required=False)
-    matches = UserMatchesSerializer(many=True, required=False)
+    matches = UserMatchesSerializer(many=True, read_only=True)
 
     class Meta:
         model = User
@@ -40,7 +40,6 @@ class RegisterSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = User.objects.create_user(
             validated_data['username'], validated_data['email'], validated_data['password'])
-        # user.preferences_set.add
         prefrences = UserPreferences.objects.create(user=user)
         return user
 

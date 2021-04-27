@@ -14,7 +14,7 @@ class UserPreferencesViewSet(viewsets.ModelViewSet):
 
 class UserMatchesViewSet(viewsets.ModelViewSet):
     serializer_class = UserMatchesSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
         return self.request.user.matches.all()

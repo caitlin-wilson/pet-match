@@ -41,10 +41,15 @@ const signInUser = async (userObj) => {
 }
 
 
-const fetchUser = async (userID) => {
+const fetchUser = async (userToken) => {
   try {
     // make call to user api
-    const response = await fetch(`${BASE_URL}users/${userID}/`)
+    const response = await fetch(`${BASE_URL}user/auth/user`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Token ${userToken}`
+      }
+    })
     // convert response to json
     const data = await response.json()
 
@@ -58,7 +63,7 @@ const fetchUser = async (userID) => {
 
     // if fetch call fails throw an error
   } catch (error) {
-    console.error('ERROR FETCHING USER PREFERENCES', error)
+    console.error('ERROR FETCHING USER INFO', error)
   }
 }
 
@@ -80,11 +85,12 @@ const postPreferences = (userPrefID, preferencesObj) => {
   }
 }
 
-const addMatch = (matchObj) => {
+const addMatch = (matchObj, userToken) => {
   try {
     const request = fetch(`${BASE_URL}user-matches/`, {
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Token ${userToken}`
       },
       method: 'POST',
       body: JSON.stringify(matchObj)
@@ -95,9 +101,13 @@ const addMatch = (matchObj) => {
   }
 }
 
-const removeMatch = async (matchID) => {
+const removeMatch = async (matchID, userToken) => {
   try {
     const response = await fetch(`${BASE_URL}user-matches/${matchID}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Token ${userToken}`
+      },
       method: 'DELETE'
     })
     return response;

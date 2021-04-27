@@ -25,7 +25,7 @@ const PreferencesPage = ({ user }) => {
       return request
 
     } catch (error) {
-      console.log('ERROR PATCHING PREFERENCE CHANGES', error)
+      console.error('ERROR PATCHING PREFERENCE CHANGES', error)
     }
   }
 
