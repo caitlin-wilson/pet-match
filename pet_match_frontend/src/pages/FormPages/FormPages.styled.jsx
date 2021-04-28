@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Page = styled.div`
-  height: 92.3vh;
+  height: 85vh;
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -9,6 +9,12 @@ const Page = styled.div`
 
   h1 {
     margin-bottom: 20px;
+  }
+
+  h3 {
+    text-decoration: underline;
+    color: ${({ theme }) => theme.secondaryhover};
+    font-family: 'Rubik', sans-serif;
   }
 
   input, Control {

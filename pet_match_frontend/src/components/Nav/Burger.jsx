@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Burg } from './Nav.styled';
 import Dropdown from './Dropdown';
 
-const Burger = ({ isLoggedIn }) => {
+const Burger = ({ isLoggedIn, user }) => {
   const [open, setOpen] = useState(false)
 
   return (
@@ -12,7 +12,7 @@ const Burger = ({ isLoggedIn }) => {
         <div />
         <div />
       </Burg>
-      <Dropdown isLoggedIn={isLoggedIn} open={open} />
+      <Dropdown isLoggedIn={isLoggedIn} user={user} open={open} />
     </div>
   )
 }

@@ -176,7 +176,8 @@ const CardDeck = ({ animals, user }) => {
             }
 
             // once all animals are loaded render cards
-            if (animal && animal !== undefined) {
+            if (animal && animal !== undefined && animal.photos[0].medium !== undefined) {
+              console.log(animal)
               return (
                 <GameCard
                   key={index}

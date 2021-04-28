@@ -15,7 +15,7 @@ const NavBar = ({ user, isLoggedIn }) => {
           </Link>
         </div>
         <Welcome>Welcome back, {user.username}!</Welcome>
-        <Burger isLoggedIn={isLoggedIn} />
+        <Burger isLoggedIn={isLoggedIn} user={user} />
       </Nav>
     )
   } else {

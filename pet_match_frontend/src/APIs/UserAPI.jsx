@@ -81,6 +81,17 @@ const logOutUser = async (userToken) => {
   }
 }
 
+const deleteUser = async (userID) => {
+  try {
+    const request = await fetch(`${BASE_URL}users/${userID}/`, {
+      method: 'DELETE'
+    })
+    return request
+  } catch (error) {
+    console.error('ERROR DELETING USER FROM DB', error)
+  }
+}
+
 const postPreferences = (userPrefID, preferencesObj) => {
   // make fetch call to api
   try {
@@ -136,6 +147,7 @@ export default {
   signInUser,
   fetchUser,
   logOutUser,
+  deleteUser,
   postPreferences,
   addMatch,
   removeMatch,

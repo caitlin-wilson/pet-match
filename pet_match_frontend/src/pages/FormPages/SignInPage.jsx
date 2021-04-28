@@ -34,6 +34,7 @@ const SignUpPage = () => {
     return (
       <form onSubmit={handleLogin}>
         <Page>
+          <h3>Welcome back!</h3>
           <label value='username'>Username</label>
           <input type='text'></input>
           <label value='password'>Password</label>
