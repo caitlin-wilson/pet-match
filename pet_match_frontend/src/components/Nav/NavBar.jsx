@@ -10,12 +10,12 @@ const NavBar = ({ user, isLoggedIn }) => {
     return (
       <Nav>
         <div className='logo'>
-          <Link style={{ textDecoration: 'none', color: '#000000' }} to='/'>
+          <Link style={{ textDecoration: 'none', color: '#000000' }} to='/profile'>
             PetMatch
           </Link>
         </div>
         <Welcome>Welcome back, {user.username}!</Welcome>
-        <Burger />
+        <Burger isLoggedIn={isLoggedIn} />
       </Nav>
     )
   } else {

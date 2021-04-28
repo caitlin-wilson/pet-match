@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { TopBar, Banner, ProfPhoto, Main, MatchDeck, AnimalCard, Image } from './ProfilePage.styled';
 import UserAPI from '../../APIs/UserAPI';
 
@@ -8,7 +8,7 @@ const ProfilePage = ({ user, token }) => {
 
   useEffect(() => {
     if (user.matches && user.matches !== undefined) {
-      setMatches(user.matches)
+      setMatches(matcts => [...user.matches])
     }
   }, [user.matches])
 
@@ -53,7 +53,9 @@ const ProfilePage = ({ user, token }) => {
                   <button
                     onClick={() => {
                       UserAPI.removeMatch(animal.id, localStorage.getItem('auth-user'))
-                      window.location.reload()
+                      return (
+                        <Redirect to='/profile' />
+                      )
                     }}
                   >
                     REMOVE

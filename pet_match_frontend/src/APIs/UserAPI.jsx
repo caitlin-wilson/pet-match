@@ -67,6 +67,20 @@ const fetchUser = async (userToken) => {
   }
 }
 
+const logOutUser = async (userToken) => {
+  try {
+    const request = await fetch(`${BASE_URL}user/auth/logout`, {
+      headers: {
+        'Authorization': `Token ${userToken}`
+      },
+      method: 'POST'
+    })
+    return request
+  } catch (error) {
+    console.error('ERROR LOGGING USER OUT WITH API', error)
+  }
+}
+
 const postPreferences = (userPrefID, preferencesObj) => {
   // make fetch call to api
   try {
@@ -121,6 +135,7 @@ export default {
   createUser,
   signInUser,
   fetchUser,
+  logOutUser,
   postPreferences,
   addMatch,
   removeMatch,

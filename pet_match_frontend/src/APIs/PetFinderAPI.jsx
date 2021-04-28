@@ -25,9 +25,9 @@ const fetchToken = async () => {
 
 const fetchAnimals = async (searchString, token) => {
   try {
-    const request = await fetch(`https://api.petfinder.com/v2/animals?${searchString}/`, {
+    const request = await fetch(`https://api.petfinder.com/v2/animals?${searchString}`, {
       headers: {
-        'Authorization': `Bearer ${token}`
+        Authorization: `Bearer ${token}`
       }
     })
     const data = await request.json()
